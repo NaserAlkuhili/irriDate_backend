@@ -12,5 +12,6 @@ model.fit(X, y)
 # Function to predict 0 or 1
 def predict(input_value):
     prediction = model.predict(np.array([[input_value]]))
-    return prediction[0]
-
+    
+    # Ensure the prediction is returned as a native Python int type
+    return int(prediction[0])
