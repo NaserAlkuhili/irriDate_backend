@@ -1,17 +1,41 @@
-from sklearn.linear_model import LogisticRegression
+import pandas as pd
 import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
 
-# Example training data (X and y)
-X = np.array([[0.2], [0.8], [0.5], [0.3], [0.7], [0.1]])
-y = np.array([0, 1, 0, 0, 1, 0])
+df = pd.read_csv('./data.csv')
 
-# Create and train the model
-model = LogisticRegression()
-model.fit(X, y)
+# Dropping the date feature
+df = df.drop(columns=['date'])
 
-# Function to predict 0 or 1
+X_train = df.drop('pump', axis=1)
+y_train = df['pump']
+
+# Standardizing the data
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+
+
+best_mlp = MLPClassifier(
+    activation='relu',
+    alpha=0.0001,
+    early_stopping=False,
+    hidden_layer_sizes=(50, 50),
+    learning_rate='constant',
+    max_iter=1000,
+    solver='adam',
+    random_state=42
+)
+
+best_mlp.fit(X_train_scaled, y_train)
+
+# Function to predict 0 or 1 based on input features
 def predict(input_value):
-    prediction = model.predict(np.array([[input_value]]))
     
-    # Ensure the prediction is returned as a native Python int type
+    input_value_scaled = scaler.transform(np.array([input_value]))
+    
+    
+    prediction = best_mlp.predict(input_value_scaled)
+    
+    
     return int(prediction[0])
