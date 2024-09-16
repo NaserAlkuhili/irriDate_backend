@@ -39,3 +39,4 @@ def predict(input_value):
     
     
     return int(prediction[0])
+

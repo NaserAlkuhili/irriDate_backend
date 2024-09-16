@@ -13,12 +13,17 @@ def index():
 def predict_and_notify():
     try:
         data = request.json
-        input_value = float(data.get('input_value'))  # Convert input to float
+        input_value = data.get('input_value')  # Get the input as a list
         expo_push_token = data.get('expo_push_token')
 
         if input_value is None or expo_push_token is None:
             raise ValueError("Missing input_value or expo_push_token")
 
+        # Ensure the input_value is a list and contains three items
+        if not isinstance(input_value, list) or len(input_value) != 3:
+            raise ValueError("input_value must be a list with three values")
+
+        # Predict the outcome using the model
         prediction = predict(input_value)  # This returns a native int
 
         if prediction == 1:
