@@ -60,10 +60,9 @@ nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.2.2
 notebook_shim==0.2.4
-numpy==1.25.2
 overrides==7.7.0
 packaging==24.1
-pandas==2.1.0
+pandas
 pandocfilters==1.5.1
 parso==0.8.4
 pexpect==4.9.0
@@ -84,8 +83,8 @@ requests==2.32.3
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 rpds-py==0.20.0
-scikit-learn==1.5.2
-scipy==1.14.1
+scikit-learn
+scipy
 Send2Trash==1.8.3
 setuptools==74.1.2
 six==1.16.0
@@ -107,5 +106,5 @@ websocket-client==1.8.0
 Werkzeug==3.0.4
 widgetsnbextension==4.0.13
 Pillow==10.4.0 
-tensorflow==2.13.0
-tensorflow-cpu==2.13.0
+tensorflow==2.12.0
+tensorflow-cpu==2.12.0
