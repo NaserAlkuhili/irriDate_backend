@@ -106,3 +106,4 @@ webencodings==0.5.1
 websocket-client==1.8.0
 Werkzeug==3.0.4
 widgetsnbextension==4.0.13
+Pillow==10.4.0 
