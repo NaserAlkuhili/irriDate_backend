@@ -51,8 +51,12 @@ from notifications import send_push_notification
 
 app = Flask(__name__)
 
-# Load the plant health model (assumes the model is saved as a .h5 file)
-plant_health_model = load_model('models/palm_tree_health_model.h5')
+# Try loading the plant health model and handle any errors
+try:
+    plant_health_model = load_model('models/palm_tree_health_model.h5')
+    print("Plant health model loaded successfully.")
+except Exception as e:
+    print(f"Error loading plant health model: {str(e)}")
 
 @app.route('/')
 def index():
@@ -102,7 +106,6 @@ def predict_plant_health():
 
         # Make prediction using the plant health model
         predictions = plant_health_model.predict(img_array)
-        # predicted_class = np.argmax(predictions, axis=1)[0]  # Get the predicted class
         probabilities = predictions[0].tolist()
 
         # Return the prediction result
@@ -113,5 +116,9 @@ def predict_plant_health():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Default to 5000 if PORT is not set
-    app.run(host='0.0.0.0', port=port, debug=True)
+    # Get the port from the environment variable or fallback to 5001 for local development
+    port = int(os.environ.get('PORT', 5001))  # Use Render's dynamic port or 5001 locally
+    print(f"Running on port {port}")
+    app.run(host='0.0.0.0', port=port)
+
+
