@@ -107,3 +107,5 @@ websocket-client==1.8.0
 Werkzeug==3.0.4
 widgetsnbextension==4.0.13
 Pillow==10.4.0 
+tensorflow==2.13.0
+tensorflow-cpu==2.13.0
