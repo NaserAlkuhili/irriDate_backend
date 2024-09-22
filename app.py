@@ -115,6 +115,10 @@ def predict_plant_health():
         print(f"Error occurred: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "healthy"}), 200
+
 if __name__ == '__main__':
     # Get the port from the environment variable or fallback to 5001 for local development
     port = int(os.environ.get('PORT', 5001))  # Use Render's dynamic port or 5001 locally
