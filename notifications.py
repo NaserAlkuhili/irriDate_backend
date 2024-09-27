@@ -16,4 +16,5 @@ def send_push_notification(expo_push_token):
         },
         json=message,
     )
+    print(response)
     return response.status_code
