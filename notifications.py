@@ -5,8 +5,8 @@ def send_push_notification(expo_push_token):
     message = {
         'to': expo_push_token,
         'sound': 'default',
-        'title': 'AI Model Alert',
-        'body': 'Your AI model predicted 1!',
+        'title': 'Your Palm Trees Need Water 🌴💧',
+        'body': 'Please water your plants',
     }
     response = requests.post(
         'https://exp.host/--/api/v2/push/send',

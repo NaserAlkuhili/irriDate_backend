@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 
-df = pd.read_csv('./data.csv')
+df = pd.read_csv('./smart_irrigation_data/train_data.csv')
 
 # Dropping the date feature
 df = df.drop(columns=['date'])
