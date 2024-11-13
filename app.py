@@ -2,9 +2,8 @@
 import os
 from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
 import numpy as np
-from smart_irrigation_model import predict
+from models.smart_irrigation_model import predict
 from notifications import send_push_notification
 from io import BytesIO
 from PIL import Image 
@@ -13,7 +12,7 @@ from firebase_admin import credentials, firestore
 
 app = Flask(__name__)
 
-cred = credentials.Certificate('config/irridate-30465-firebase-adminsdk-8c1bt-eddec70618.json')
+cred = credentials.Certificate('../config/irridate-30465-firebase-adminsdk-8c1bt-4ee8cf415a.json')
 firebase_admin.initialize_app(cred)
 
 # Firestore DB
@@ -127,8 +126,7 @@ def health_check():
     return jsonify({"status": "healthy"}), 200
 
 if __name__ == '__main__':
-    # Get the port from the environment variable or fallback to 5001 for local development
-    port = int(os.environ.get('PORT', 5001))  # Use Render's dynamic port or 5001 locally
+    port = int(os.environ.get('PORT', 5001))
     print(f"Running on port {port}")
     app.run(host='0.0.0.0', port=port)
 
